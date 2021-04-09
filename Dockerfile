@@ -18,8 +18,6 @@ RUN pip install pip setuptools --no-cache-dir
 COPY build/requirements.txt .
 RUN pip install -r requirements.txt --no-cache-dir
 
-COPY build/requirements_test.txt .
-RUN pip install -r requirements_test.txt --no-cache-dir
 
 COPY app .
 
