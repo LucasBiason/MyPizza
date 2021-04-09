@@ -4,8 +4,6 @@ from django.utils.translation import gettext_lazy as _
 from rest_framework.exceptions import PermissionDenied
 from rest_framework.exceptions import ValidationError
 
-from src.utils import file_system
-
 
 class Manager():
 

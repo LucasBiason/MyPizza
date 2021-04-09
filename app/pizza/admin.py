@@ -1,20 +1,35 @@
 from django.contrib import admin
 
-from pizza.models import Pizza, Pizzeria, Likes
+from pizza import models
 
 
-class PizzaAdmin(admin.ModelAdmin):
-    pass
+class PizzaInline(admin.TabularInline):
+    model = models.Pizza
+    extra = 0
 
 
+@admin.register(models.Pizzeria)
 class PizzeriaAdmin(admin.ModelAdmin):
-    pass
+    ordering = ['owner']
+    list_display =  ['owner', 'name', 'phone',
+                     'registration_date', 'update_date']
+    inlines = [PizzaInline,]
 
 
+class LikesInline(admin.TabularInline):
+    model = models.Likes
+    extra = 0
+
+@admin.register(models.Pizza)
+class PizzaAdmin(admin.ModelAdmin):
+    ordering = ['creator']
+    list_display =  ['creator', 'title', 'approved',
+                     'registration_date', 'update_date']
+    inlines = [LikesInline,]
+
+
+@admin.register(models.Likes)
 class LikesAdmin(admin.ModelAdmin):
-    pass
+    ordering = ['user']
+    list_display =  ['user', 'pizza']
 
-
-admin.site.register(Pizza, PizzaAdmin)
-admin.site.register(Pizzeria, PizzeriaAdmin)
-admin.site.register(Likes, LikesAdmin)

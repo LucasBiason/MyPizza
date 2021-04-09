@@ -20,12 +20,14 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.contrib.sites',
 
     'rest_framework',
     'rest_framework.authtoken',
     'django_rest_passwordreset',
     'corsheaders',
 
+    'utils',
     'src',
     'pizza',
     'users',
@@ -139,13 +141,17 @@ TOKEN_EXPIRE_TIME=datetime.timedelta(hours=1)
 
 
 CORS_ORIGIN_ALLOW_ALL = True
-CORS_ORIGIN_WHITELIST = os.environ.get('CORS_WHITELIST') or config('CORS_WHITELIST') or ''
+try:
+    CORS_ORIGIN_WHITELIST = os.environ.get('CORS_WHITELIST') or config('CORS_WHITELIST')
+except:
+    CORS_ORIGIN_WHITELIST = ''
+
 if not CORS_ORIGIN_WHITELIST:
     CORS_ORIGIN_WHITELIST = [
         "http://localhost:8000",
         "http://127.0.0.1:8000"
     ]
-if isinstance(CORS_ORIGIN_WHITELIST, str):
+elif isinstance(CORS_ORIGIN_WHITELIST, str):
     CORS_ORIGIN_WHITELIST = CORS_ORIGIN_WHITELIST.split(',')
 
 

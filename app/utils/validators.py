@@ -8,7 +8,7 @@ from django.utils.translation import gettext_lazy as _
 
 from rest_framework.exceptions import ValidationError
 
-from src.utils import strings, data_time
+from utils import strings, data_time
 
 
 def validate_text(text, max_length=0, required=False, verbose=None,

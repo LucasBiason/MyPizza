@@ -6,12 +6,14 @@ class Manager():
 
     @classmethod
     def raise_not_found(cls):
-        raise Exception(f'{cls._meta.verbose_name} não encontrada')
+        raise Exception(f'{cls._meta.verbose_name} not found')
 
     @classmethod
-    def retrieve(cls, id):
+    def retrieve(cls, id, raise_not_found=False):
         ab = cls.objects.filter(pk=id)
         if not ab:
+            if raise_not_found:
+                cls.raise_not_found()
             return cls()
         return ab.get()
 

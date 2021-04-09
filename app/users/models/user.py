@@ -2,7 +2,7 @@ from django.db import models
 from django.contrib.auth.models import AbstractBaseUser, PermissionsMixin
 from django.utils.translation import gettext as _
 
-from src.utils.models.reflections import set_fields
+from utils.reflections import set_fields
 from users.models.validators.user import Validator
 from users.models.managers.base import UserManager
 from users.models.managers.user import Manager

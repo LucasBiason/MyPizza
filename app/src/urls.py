@@ -11,6 +11,6 @@ urlpatterns = [
     path('safe/', views.safe, name='safe'),
     path('admin/', admin.site.urls),
     path('pizzas/v1/', include('pizza.urls')),
-    path('user/v1/', include('user.urls')),
+    path('users/v1/', include('users.urls')),
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT) \
   + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

@@ -1,7 +1,7 @@
 from django.utils.translation import gettext_lazy as _
 from rest_framework.exceptions import ValidationError
 
-from src.utils import validators
+from utils import validators
 
 
 class Validator():
