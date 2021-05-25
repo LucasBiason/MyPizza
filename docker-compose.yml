@@ -2,17 +2,24 @@ version: '3.6'
 
 services:
 
+  migrate:
+    container_name: migrate
+    network_mode: host
+    command: migrate
+    build:
+      context: .
+    env_file:
+      - app/src/.env
+
   app:
     container_name: app
     network_mode: host
-    command: bash -c "python manage.py runserver 0.0.0.0:5000"
+    command: runserver
     build:
       context: .
+    depends_on:
+      - migrate
     ports:
       - "5000:5000"
     env_file:
       - app/src/.env
-    deploy:
-      resources:
-        limits:
-          memory: 300M
